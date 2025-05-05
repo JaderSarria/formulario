@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario de Canciones</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        #numero-container {
+            display: none;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ingrese los datos de la canción:</h1>
+        <form method="POST" action="/guardar_respuesta">
+            <div class="form-group">
+                <label for="himnario">Himnario:</label>
+                <select id="himnario" name="himnario">
+                    <option value="no">No</option>
+                    <option value="manantial">Manantial de Inspiración</option>
+                    <option value="lluvias">Lluvias de Bendición</option>
+                </select>
+            </div>
+            <div class="form-group" id="numero-container">
+                <label for="numero">Número:</label>
+                <input type="number" id="numero" name="numero">
+            </div>
+            <div class="form-group">
+                <label for="nombre_cancion">Nombre Canción:</label>
+                <input type="text" id="nombre_cancion" name="nombre_cancion" required>
+            </div>
+            <div class="form-group">
+                <label for="tono">Tono:</label>
+                <input type="text" id="tono" name="tono">
+            </div>
+            <div class="form-group">
+                <label for="ocasion">Ocasión:</label>
+                <input type="text" id="ocasion" name="ocasion">
+            </div>
+            <div class="form-group">
+                <label for="letra">Letra:</label>
+                <textarea id="letra" name="letra"></textarea>
+            </div>
+            <button type="submit">Guardar Canción</button>
+        </form>
+    </div>
+
+    <script>
+        const himnarioSelect = document.getElementById('himnario');
+        const numeroContainer = document.getElementById('numero-container');
+        const numeroInput = document.getElementById('numero');
+
+        himnarioSelect.addEventListener('change', function() {
+            if (this.value === 'no') {
+                numeroContainer.style.display = 'none';
+                numeroInput.required = false;
+            } else {
+                numeroContainer.style.display = 'block';
+                numeroInput.required = true;
+            }
+        });
+    </script>
+</body>
+</html>
